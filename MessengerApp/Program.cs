@@ -11,7 +11,15 @@ namespace MessengerApp
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 
-			builder.Services.AddSignalR();
+
+
+
+			builder.Services.AddSignalR(o =>
+            {
+                o.EnableDetailedErrors = true;
+                o.MaximumReceiveMessageSize = 1*1024*1024; // 1 MB
+				
+            });
 
 			var app = builder.Build();
 
@@ -33,7 +41,7 @@ namespace MessengerApp
 
 			app.MapControllerRoute(
 				name: "default",
-				pattern: "{controller=Home}/{action=Index}/{id?}");
+				pattern: "{controller=Home}/{action=Chat}/{id?}");
 
 
 			

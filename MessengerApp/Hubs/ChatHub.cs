@@ -17,13 +17,16 @@ namespace MessengerApp.Hubs
 
 		}
 
+		public async Task ShareImage(string user, string imageData)
+		{
+			//await Clients.All.SendAsync("receive", user, message);
+			await Clients.Caller.SendAsync("imgRcv", user, imageData);
+			await Clients.Others.SendAsync("imgRcv", user, imageData);
 
+		}
 
 		public override Task OnConnectedAsync()
 		{
-
-
-
 			return base.OnConnectedAsync();
 		}
 
